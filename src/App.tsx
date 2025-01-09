@@ -12,8 +12,14 @@ import {store} from "./store/store.ts";
 import {Log} from "./pages/log.tsx";
 import {Crop} from "./pages/crop.tsx";
 import {AddStaff} from "./pages/addStaff.tsx";
-import {UpdateStaff} from "./pages/updateStaff.tsx";
-import {DeleteStaff} from "./pages/deleteStaff.tsx";
+import {AddEquipment} from "./pages/addEquipment.tsx";
+import {AddVehicle} from "./pages/addVehicle.tsx";
+import {AddField} from "./pages/addField.tsx";
+import {AddLog} from "./pages/addLog.tsx";
+import {AddCrop} from "./pages/addCrop.tsx";
+
+//import {UpdateStaff} from "./pages/updateStaff.tsx";
+//import {DeleteStaff} from "./pages/deleteStaff.tsx";
 
 
 function App() {
@@ -25,15 +31,31 @@ function App() {
         {path :'',element :<Dashboard/>},
         {path :'/staff',element :<Staff/>},
             { path: "/staff/addStaff", element: <AddStaff/> },
-            { path: "/staff/updateStaff", element: <UpdateStaff/> },
-            { path: "/staff/deleteStaff", element: <DeleteStaff/> },
+            //{ path: "/staff/updateStaff", element: <UpdateStaff/> },
+            //{ path: "/staff/deleteStaff", element: <DeleteStaff/> },
 
 
         {path :'/field',element :<Field/>},
+        //   TODO--------field navigation
+            { path: "/field/addField", element: <AddField/> },
+
         {path :'/equipment',element :<Equipment/>},
+        //   TODO--------equipment navigation
+            { path: "/equipment/addEquipment", element: <AddEquipment/> },
+
+
         {path :'/vehicle',element :<Vehicle/>},
+        //   TODO--------vehicle navigation
+            { path: "/vehicle/addVehicle", element: <AddVehicle/> },
+
+
         {path :'/log',element :<Log/>},
-        {path :'/crop',element :<Crop/>}
+        //   TODO--------log navigation
+            { path: "/log/addLog", element: <AddLog/> },
+
+        {path :'/crop',element :<Crop/>},
+        //   TODO--------crop navigation
+            { path: "/crop/addCrop", element: <AddCrop/> },
       ]
     },
 
