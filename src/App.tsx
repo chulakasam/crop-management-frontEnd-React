@@ -12,6 +12,8 @@ import {store} from "./store/store.ts";
 import {Log} from "./pages/log.tsx";
 import {Crop} from "./pages/crop.tsx";
 import {AddStaff} from "./pages/addStaff.tsx";
+import {UpdateStaff} from "./pages/updateStaff.tsx";
+import {DeleteStaff} from "./pages/deleteStaff.tsx";
 
 
 function App() {
@@ -22,7 +24,11 @@ function App() {
       children:[
         {path :'',element :<Dashboard/>},
         {path :'/staff',element :<Staff/>},
-        { path: "/staff/addStaff", element: <AddStaff/> },
+            { path: "/staff/addStaff", element: <AddStaff/> },
+            { path: "/staff/updateStaff", element: <UpdateStaff/> },
+            { path: "/staff/deleteStaff", element: <DeleteStaff/> },
+
+
         {path :'/field',element :<Field/>},
         {path :'/equipment',element :<Equipment/>},
         {path :'/vehicle',element :<Vehicle/>},
