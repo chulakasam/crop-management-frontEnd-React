@@ -9,6 +9,7 @@ import {Vehicle} from "./pages/vehicle.tsx";
 import {Equipment} from "./pages/equipment.tsx";
 import {Provider} from "react-redux";
 import {store} from "./store/store.ts";
+import {Log} from "./pages/log.tsx";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         {path :'/field',element :<Field/>},
         {path :'/equipment',element :<Equipment/>},
         {path :'/vehicle',element :<Vehicle/>},
+        {path :'/log',element :<Log/>}
       ]
     },
 

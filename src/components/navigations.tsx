@@ -12,6 +12,7 @@ export function Navigation(){
                         <Link to="/field">Field</Link>
                         <Link to="/equipment">Equipment</Link>
                         <Link to="/vehicle">Vehicle</Link>
+                        <Link to="/log">Monitoring Log</Link>
                     </ul>
                 </nav>
             </header>
