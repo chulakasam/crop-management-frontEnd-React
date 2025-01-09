@@ -10,6 +10,8 @@ import {Equipment} from "./pages/equipment.tsx";
 import {Provider} from "react-redux";
 import {store} from "./store/store.ts";
 import {Log} from "./pages/log.tsx";
+import {Crop} from "./pages/crop.tsx";
+import {AddStaff} from "./pages/addStaff.tsx";
 
 
 function App() {
@@ -20,10 +22,12 @@ function App() {
       children:[
         {path :'',element :<Dashboard/>},
         {path :'/staff',element :<Staff/>},
+        { path: "/staff/addStaff", element: <AddStaff/> },
         {path :'/field',element :<Field/>},
         {path :'/equipment',element :<Equipment/>},
         {path :'/vehicle',element :<Vehicle/>},
-        {path :'/log',element :<Log/>}
+        {path :'/log',element :<Log/>},
+        {path :'/crop',element :<Crop/>}
       ]
     },
 
