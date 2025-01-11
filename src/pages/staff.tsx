@@ -5,13 +5,15 @@ export function Staff(){
         <>
             <br/>
             Staff Management
+            <br/>
+
             <Link to="/staff/addStaff"><button>Add New Staff</button></Link>
 
 
-            {/*TODO ----------------function add*/}
+            {/*TODO ----------------function update*/}
            <button>Update Staff</button>
 
-            {/*TODO ----------------function add*/}
+            {/*TODO ----------------function delete*/}
            <button>Delete Staff</button>
 
 

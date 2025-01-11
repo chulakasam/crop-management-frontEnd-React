@@ -6,7 +6,13 @@ export function Log(){
         <br/>
 
             Monitoring logs Management
+            <br/>
             <Link to="/log/addLog"><button>Add New Monitoring Log</button></Link>
+            {/*TODO ----------------function update*/}
+            <button>Update Monitoring Log</button>
+
+            {/*TODO ----------------function delete*/}
+            <button>Delete Monitoring Log</button>
         </>
     )
 }
