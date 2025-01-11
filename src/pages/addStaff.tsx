@@ -18,6 +18,7 @@ export function AddStaff(){
                     <label>Vehicle ID: <input type="text" name="vehicle_id"/></label><br/>
 
                     <button type="submit">Add Staff</button>
+
                 </form>
             </div>
 
