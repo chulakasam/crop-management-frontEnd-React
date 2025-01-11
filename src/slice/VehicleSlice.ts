@@ -1,6 +1,6 @@
-import {createSlice} from "@reduxjs/toolkit";
-
-const VehicleSlice = createSlice({
-
-})
-export  default VehicleSlice.reducer;
+// import {createSlice} from "@reduxjs/toolkit";
+//
+// const VehicleSlice = createSlice({
+//
+// })
+// export  default VehicleSlice.reducer;
