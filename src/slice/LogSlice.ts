@@ -8,7 +8,10 @@ const LogSlice = createSlice({
         addNewLog:(state,action)=>{
             state.push(action.payload);
         },
+        deleteLog:(state,action)=>{
+            return state.filter((log) => log.logCode !== action.payload);
+        }
     }
 })
 export default LogSlice.reducer;
-export const {addNewLog} = LogSlice.actions;
+export const {addNewLog,deleteLog} = LogSlice.actions;
