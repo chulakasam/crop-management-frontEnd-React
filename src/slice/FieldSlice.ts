@@ -9,7 +9,10 @@ const FieldSlice = createSlice({
         addNewField:(state,action)=>{
             state.push(action.payload);
         },
+        deleteField:(state,action)=>{
+            return state.filter((field)=>field.fieldCode !== action.payload);
+        }
     }
 })
 export default FieldSlice.reducer;
-export const {addNewField} = FieldSlice.actions;
+export const {addNewField,deleteField} = FieldSlice.actions;
