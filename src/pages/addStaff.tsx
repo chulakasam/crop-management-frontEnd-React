@@ -17,7 +17,10 @@ export function AddStaff(){
     const [address, setAddress] = useState('');
     const [vehicleId,setVehicleId]=useState('');
 
-    function handleSubmitStaff(){
+    function handleSubmitStaff(event: React.FormEvent){
+
+        event.preventDefault();
+
         dispatch(addNewStaff ({staffId,name,position,gender,joinedDate,dob,contactNo,email,address,vehicleId}));
 
 

@@ -13,7 +13,8 @@ export function AddEquipment() {
     const [staffId, setStaffId] = useState('');
     const [fieldCode, setFieldCode] = useState('');
 
-    function handleSubmitEquipment(){
+    function handleSubmitEquipment(event: React.FormEvent){
+        event.preventDefault();
         dispatch(addNewEquipment({equipmentId,equipmentName,equipmentType,equipmentStatus,staffId,fieldCode}));
         setEquipmentId('');
         setEquipmentName('');
@@ -47,7 +48,7 @@ export function AddEquipment() {
             <ul>
                 {equipment.map((equipmentDetails: any, index: number) => (
                     <li key={index}>
-                        {equipmentDetails.equipmentId}, {equipmentDetails.equipmentName},{equipmentDetails.equipmentType},{equipmentDetails.equipmentStatus},{equipmentDetails.staffId},{equipmentDetails.dob},{equipmentDetails.fieldCode}
+                        {equipmentDetails.equipmentId}, {equipmentDetails.equipmentName},{equipmentDetails.equipmentType},{equipmentDetails.equipmentStatus},{equipmentDetails.staffId},{equipmentDetails.fieldCode}
                     </li>
                 ))}
             </ul>
