@@ -8,7 +8,10 @@ const CropSlice = createSlice({
         addNewCrop:(state,action)=>{
             state.push(action.payload);
         },
+        deleteCrop:(state,action)=>{
+            return state.filter(crop => crop.cropId !== action.payload);
+        }
     }
 });
 export default CropSlice.reducer;
-export const {addNewCrop} = CropSlice.actions;
+export const {addNewCrop,deleteCrop} = CropSlice.actions;
