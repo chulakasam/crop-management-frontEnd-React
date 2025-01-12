@@ -34,14 +34,22 @@ export function Vehicle() {
             {/*TODO ----------------function update*/}
             <button>Update Vehicle</button>
 
+
+
+
+
+
             {/*TODO ----------------function delete*/}
             <br/>
 
-            <input type="text" placeholder="Enter Vehicle License No" value={deleteLicenseNo}
-                   onChange={(e) => setDeleteLicenseNo(e.target.value)}/>
+            <input type="text" placeholder="Enter Vehicle License No" value={deleteLicenseNo} onChange={(e) => setDeleteLicenseNo(e.target.value)}/>
             <button onClick={handleDeleteVehicle}>Delete Vehicle</button>
 
+
+
             <br/>
+
+
             <ul>
                 {vehicle.map((vehicleDetails: any, index: number) => (
                     <li key={index}>
