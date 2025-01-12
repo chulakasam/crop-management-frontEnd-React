@@ -8,7 +8,10 @@ const EquipmentSlice = createSlice({
         addNewEquipment:(state,action)=>{
             state.push(action.payload);
         },
+        deleteEquipment:(state,action)=>{
+            return state.filter(equipment => equipment.equipmentId !== action.payload);
+        }
     }
 })
 export default EquipmentSlice.reducer;
-export const {addNewEquipment} = EquipmentSlice.actions;
+export const {addNewEquipment,deleteEquipment} = EquipmentSlice.actions;
