@@ -77,6 +77,10 @@ export function Vehicle() {
             <Link to="/vehicle/addVehicle">
                 <button>Add New Vehicle</button>
             </Link>
+
+
+
+
             {/*TODO ----------------function update*/}
             <input type="text" placeholder="License No to search" value={searchLicenseNo}
                    onChange={(e) => setSearchLicenseNo(e.target.value)}/>

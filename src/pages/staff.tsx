@@ -2,14 +2,33 @@ import {Link} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
 import {ChangeEvent, useState} from "react";
 import * as React from "react";
-import {deleteStaff} from "../slice/StaffSlice.ts";
+import {deleteStaff, updateStaff} from "../slice/StaffSlice.ts";
+
 
 
 export function Staff(){
     const staff = useSelector((state:any) => state.staff);
     const dispatch = useDispatch();
-
     const [deleteStaffId, setDeleteStaffId] = useState('');
+
+    const [searchStaffId,setSearchStaffId] = useState('');
+    const [foundStaff,setFoundStaff] = useState<any | null>(null);
+
+    const [newStaffname, setNewStaffName] = useState('');
+    const [newPosition, setNewPosition] = useState('');
+    const [newGender, setNewGender] = useState('');
+    const [newJoined_date, setNewJoined_date] = useState('');
+    const [newdob, setNewdob] = useState('');
+    const [newContact_no, setNewContact_no] = useState('');
+    const [newEmail, setNewEmail] = useState('');
+    const [newAddress, setNewAddress] = useState('');
+    const [newVehicleId, setNewVehicleId] = useState('');
+
+
+
+
+
+
 
     function handleDeleteStaff(event:React.FormEvent){
         event.preventDefault();
@@ -21,6 +40,45 @@ export function Staff(){
         setDeleteStaffId('');
     }
 
+    function handleSearchStaff(event:React.FormEvent){
+        event.preventDefault();
+        const found = staff.find((s: any) => s.staffId === searchStaffId);
+        if (found) {
+            setFoundStaff(found);
+            setNewStaffName(found.name);
+            setNewPosition(found.position);
+            setNewGender(found.gender);
+            setNewJoined_date(found.joinedDate);
+            setNewdob(found.dob);
+            setNewContact_no(found.contactNo);
+            setNewEmail(found.email);
+            setNewAddress(found.address);
+            setNewVehicleId(found.vehicleId);
+        } else {
+            alert('staff not found.');
+            setFoundStaff(null);
+        }
+    }
+    function handleUpdateStaff(event:React.FormEvent){
+        event.preventDefault();
+        if(foundStaff){
+            dispatch(updateStaff({staffId:foundStaff.staffId,newStaffname,newPosition,newGender,newJoined_date,newdob,newContact_no,newEmail,newAddress,newVehicleId}));
+
+            alert("vehicle updated successfully.");
+            setNewStaffName('');
+            setNewPosition('');
+            setNewGender('');
+            setNewJoined_date('');
+            setNewdob('');
+            setNewContact_no('');
+            setNewEmail('');
+            setNewAddress('');
+            setNewVehicleId('');
+        }else{
+            alert("staff not found.");
+            setFoundStaff(null);
+        }
+    }
 
 
 
@@ -37,11 +95,49 @@ export function Staff(){
 
 
             {/*TODO ----------------function update*/}
-            <button>Update Staff</button>
+            <input type="text" placeholder="Staff ID to search" value={searchStaffId} onChange={(e) => setSearchStaffId(e.target.value)}/>
+            <button onClick={handleSearchStaff}>Search Staff</button>
+
+            {foundStaff && (
+                <div>
+                    <h3>Update Staff:</h3>
+                    <p>
+                        <strong>Current Staff Name:</strong> {foundStaff.name}
+                        <br/>
+                        <strong>Current Position:</strong> {foundStaff.position}
+                        <br/>
+                        <strong>Current Gender:</strong> {foundStaff.gender}
+                        <br/>
+                        <strong>Current Joined Date:</strong> {foundStaff.joinedDate}
+                        <br/>
+                        <strong>Current Date of birth:</strong> {foundStaff.dob}
+                        <br/>
+                        <strong>Current Contact No:</strong> {foundStaff.contactNo}
+                        <br/>
+                        <strong>Current Email:</strong> {foundStaff.email}
+                        <br/>
+                        <strong>Current Address:</strong> {foundStaff.address}
+                        <br/>
+                        <strong>Current Vehicle ID:</strong> {foundStaff.vehicleId}
+                        <br/>
+                    </p>
+                    <input type="text"  value={newStaffname} onChange={(e) => setNewStaffName(e.target.value)}/>
+                    <input type="text"  value={newPosition} onChange={(e) => setNewPosition(e.target.value)}/>
+                    <input type="text"  value={newGender} onChange={(e) => setNewGender(e.target.value)}/>
+                    <input type="text"  value={newJoined_date} onChange={(e) => setNewJoined_date(e.target.value)}/>
+                    <input type="text"  value={newdob} onChange={(e) => setNewdob(e.target.value)}/>
+                    <input type="text"  value={newContact_no} onChange={(e) => setNewContact_no(e.target.value)}/>
+                    <input type="text"  value={newEmail} onChange={(e) => setNewEmail(e.target.value)}/>
+                    <input type="text"  value={newAddress} onChange={(e) => setNewAddress(e.target.value)}/>
+                    <input type="text"  value={newVehicleId} onChange={(e) => setNewVehicleId(e.target.value)}/>
+                    <button onClick={handleUpdateStaff}>Update staff</button>
+                </div>
+            )}
 
             {/*TODO ----------------function delete*/}
 
-            <input type="text" placeholder='enter the staff ID' value={deleteStaffId} onChange={(e:ChangeEvent<HTMLInputElement>) => setDeleteStaffId(e.target.value)}/>
+            <input type="text" placeholder='enter the staff ID' value={deleteStaffId}
+                   onChange={(e: ChangeEvent<HTMLInputElement>) => setDeleteStaffId(e.target.value)}/>
             <button onClick={handleDeleteStaff}>Delete Staff</button>
 
             <br/>
