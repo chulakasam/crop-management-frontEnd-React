@@ -29,25 +29,122 @@ export function AddVehicle(){
     return(
         <>
             <br/>
-            <div>
-                <h2>Add New Vehicle</h2>
-                <form>
-                    <label>License No: <input type="text" name="license_no" value={licenseNo}
-                                              onChange={(e) => setLicenseNo(e.target.value)}/></label><br/>
-                    <label>Vehicle code: <input type="text" name="vehicle_code" value={vehicleCode}
-                                                onChange={(e) => setVehicleCode(e.target.value)}/></label><br/>
-                    <label>Category: <input type="text" name="category" value={category}
-                                            onChange={(e) => setCategory(e.target.value)}/></label><br/>
-                    <label>Status: <input type="text" name="status" value={status}
-                                          onChange={(e) => setStatus(e.target.value)}/></label><br/>
-                    <label>Fuel type: <input type="text" name="fuel_type" value={fuelType}
-                                             onChange={(e) => setFuelType(e.target.value)}/></label><br/>
-                    <label>Remark: <input type="text" name="remark" value={remark}
-                                          onChange={(e) => setRemark(e.target.value)}/></label><br/>
+            {/*<div>*/}
+            {/*    <h2>Add New Vehicle</h2>*/}
+            {/*    <form>*/}
+            {/*        <label>License No: <input type="text" name="license_no" value={licenseNo}*/}
+            {/*                                  onChange={(e) => setLicenseNo(e.target.value)}/></label><br/>*/}
+            {/*        <label>Vehicle code: <input type="text" name="vehicle_code" value={vehicleCode}*/}
+            {/*                                    onChange={(e) => setVehicleCode(e.target.value)}/></label><br/>*/}
+            {/*        <label>Category: <input type="text" name="category" value={category}*/}
+            {/*                                onChange={(e) => setCategory(e.target.value)}/></label><br/>*/}
+            {/*        <label>Status: <input type="text" name="status" value={status}*/}
+            {/*                              onChange={(e) => setStatus(e.target.value)}/></label><br/>*/}
+            {/*        <label>Fuel type: <input type="text" name="fuel_type" value={fuelType}*/}
+            {/*                                 onChange={(e) => setFuelType(e.target.value)}/></label><br/>*/}
+            {/*        <label>Remark: <input type="text" name="remark" value={remark}*/}
+            {/*                              onChange={(e) => setRemark(e.target.value)}/></label><br/>*/}
 
-                    <button type="submit" onClick={handleSubmitVehicle} className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">Add Vehicle</button>
+            {/*        <button type="submit" onClick={handleSubmitVehicle} className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">Add Vehicle</button>*/}
+            {/*    </form>*/}
+            {/*</div>*/}
+            <div className="max-w-lg mx-auto mt-8 p-6 bg-white rounded-lg shadow-lg">
+                <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Add New Vehicle</h2>
+                <form className="space-y-4">
+                    <div>
+                        <label htmlFor="license_no" className="block text-sm font-medium text-gray-700">
+                            License No
+                        </label>
+                        <input
+                            type="text"
+                            id="license_no"
+                            name="license_no"
+                            value={licenseNo}
+                            onChange={(e) => setLicenseNo(e.target.value)}
+                            className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
+                        />
+                    </div>
+
+                    <div>
+                        <label htmlFor="vehicle_code" className="block text-sm font-medium text-gray-700">
+                            Vehicle Code
+                        </label>
+                        <input
+                            type="text"
+                            id="vehicle_code"
+                            name="vehicle_code"
+                            value={vehicleCode}
+                            onChange={(e) => setVehicleCode(e.target.value)}
+                            className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
+                        />
+                    </div>
+
+                    <div>
+                        <label htmlFor="category" className="block text-sm font-medium text-gray-700">
+                            Category
+                        </label>
+                        <input
+                            type="text"
+                            id="category"
+                            name="category"
+                            value={category}
+                            onChange={(e) => setCategory(e.target.value)}
+                            className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
+                        />
+                    </div>
+
+                    <div>
+                        <label htmlFor="status" className="block text-sm font-medium text-gray-700">
+                            Status
+                        </label>
+                        <input
+                            type="text"
+                            id="status"
+                            name="status"
+                            value={status}
+                            onChange={(e) => setStatus(e.target.value)}
+                            className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
+                        />
+                    </div>
+
+                    <div>
+                        <label htmlFor="fuel_type" className="block text-sm font-medium text-gray-700">
+                            Fuel Type
+                        </label>
+                        <input
+                            type="text"
+                            id="fuel_type"
+                            name="fuel_type"
+                            value={fuelType}
+                            onChange={(e) => setFuelType(e.target.value)}
+                            className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
+                        />
+                    </div>
+
+                    <div>
+                        <label htmlFor="remark" className="block text-sm font-medium text-gray-700">
+                            Remark
+                        </label>
+                        <input
+                            type="text"
+                            id="remark"
+                            name="remark"
+                            value={remark}
+                            onChange={(e) => setRemark(e.target.value)}
+                            className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
+                        />
+                    </div>
+
+                    <button
+                        type="submit"
+                        onClick={handleSubmitVehicle}
+                        className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+                    >
+                        Add Vehicle
+                    </button>
                 </form>
             </div>
+
             <ul>
                 {vehicle.map((vehicleDetails: any, index: number) => (
                     <li key={index}>
