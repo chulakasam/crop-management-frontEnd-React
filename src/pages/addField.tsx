@@ -48,7 +48,7 @@ export function AddField(){
                                                   onChange={(e) => setFieldImg_01(e.target.value)}/></label><br/>
                     <label>Field Image 02: <input type="text" name="field_image_02" value={fieldImg_02}
                                                   onChange={(e) => setFieldImg_02(e.target.value)}/></label><br/>
-                    <button type="submit" onClick={handleSubmitField}>Add Field</button>
+                    <button type="submit" onClick={handleSubmitField} className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">Add Field</button>
                 </form>
             </div>
 

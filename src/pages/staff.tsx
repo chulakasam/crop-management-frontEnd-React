@@ -86,17 +86,17 @@ export function Staff(){
         <>
 
             <br/>
-            Staff Management
-            <br/>
+            <h2 className="text-3xl font-bold text-gray-800">Staff Management</h2>
+                <br/>
 
-            <Link to="/staff/addStaff">
-                <button>Add New Staff</button>
+                <Link to="/staff/addStaff">
+                <button className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">Add New Staff</button>
             </Link>
 
 
             {/*TODO ----------------function update*/}
-            <input type="text" placeholder="Staff ID to search" value={searchStaffId} onChange={(e) => setSearchStaffId(e.target.value)}/>
-            <button onClick={handleSearchStaff}>Search Staff</button>
+            <input type="text" placeholder="Staff ID to search" value={searchStaffId} onChange={(e) => setSearchStaffId(e.target.value)} className="w-64 h-10 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"/>
+            <button onClick={handleSearchStaff} className="bg-gray-200 text-gray-800 font-medium py-2 px-4 rounded hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400">Search Staff</button>
 
             {foundStaff && (
                 <div>
@@ -137,8 +137,8 @@ export function Staff(){
             {/*TODO ----------------function delete*/}
 
             <input type="text" placeholder='enter the staff ID' value={deleteStaffId}
-                   onChange={(e: ChangeEvent<HTMLInputElement>) => setDeleteStaffId(e.target.value)}/>
-            <button onClick={handleDeleteStaff}>Delete Staff</button>
+                   onChange={(e: ChangeEvent<HTMLInputElement>) => setDeleteStaffId(e.target.value)} className="w-64 h-10 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"/>
+            <button onClick={handleDeleteStaff} className="bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400">Delete Staff</button>
 
             <br/>
             <ul>

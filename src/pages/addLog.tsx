@@ -54,7 +54,7 @@ export function AddLog(){
                                              onChange={(e) => setCropCode(e.target.value)}/></label><br/>
                     <label>Staff Code: <input type="text" name="staff_code" value={staffCode}
                                               onChange={(e) => setStaffCode(e.target.value)}/></label><br/>
-                    <button type="submit" onClick={handleSubmitLog}>Add Monitoring Log</button>
+                    <button type="submit" onClick={handleSubmitLog} className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">Add Monitoring Log</button>
                 </form>
             </div>
             <ul>

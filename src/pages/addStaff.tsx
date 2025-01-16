@@ -67,7 +67,7 @@ export function AddStaff(){
                     <label>Vehicle ID: <input type="text" name="vehicle_id" value={vehicleId}
                                               onChange={(e) => setVehicleId(e.target.value)}/></label><br/>
 
-                    <button type="submit" onClick={handleSubmitStaff}>Add Staff</button>
+                    <button type="submit" onClick={handleSubmitStaff} className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">Add Staff</button>
 
                 </form>
                 <br/>

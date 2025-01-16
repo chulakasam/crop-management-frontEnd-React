@@ -42,7 +42,7 @@ export function AddEquipment() {
                                             onChange={(e) => setStaffId(e.target.value)}/></label><br/>
                     <label>Field Code: <input type="text" name="field_code" value={fieldCode}
                                               onChange={(e) => setFieldCode(e.target.value)}/></label><br/>
-                    <button type="submit" onClick={handleSubmitEquipment}>Add Equipment</button>
+                    <button type="submit" onClick={handleSubmitEquipment} className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">Add Equipment</button>
                 </form>
             </div>
             <ul>

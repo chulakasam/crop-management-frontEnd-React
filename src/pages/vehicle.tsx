@@ -72,10 +72,10 @@ export function Vehicle() {
         <>
             <br/>
 
-            Vehicle Management
+            <h2 className="text-3xl font-bold text-gray-800">Vehicle Management</h2>
             <br/>
             <Link to="/vehicle/addVehicle">
-                <button>Add New Vehicle</button>
+                <button  className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">Add New Vehicle</button>
             </Link>
 
 
@@ -83,9 +83,9 @@ export function Vehicle() {
 
             {/*TODO ----------------function update*/}
             <input type="text" placeholder="License No to search" value={searchLicenseNo}
-                   onChange={(e) => setSearchLicenseNo(e.target.value)}/>
+                   onChange={(e) => setSearchLicenseNo(e.target.value)} className="w-60 h-10 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"/>
 
-            <button onClick={handleSearchVehicle}>Search Vehicle</button>
+            <button onClick={handleSearchVehicle} className="bg-gray-200 text-gray-800 font-medium py-2 px-4 rounded hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400">Search Vehicle</button>
 
             {foundVehicle && (
                 <div>
@@ -114,11 +114,11 @@ export function Vehicle() {
 
 
             {/*TODO ----------------function delete*/}
-            <br/>
+
 
             <input type="text" placeholder="Enter Vehicle License No" value={deleteLicenseNo}
-                   onChange={(e) => setDeleteLicenseNo(e.target.value)}/>
-            <button onClick={handleDeleteVehicle}>Delete Vehicle</button>
+                   onChange={(e) => setDeleteLicenseNo(e.target.value)} className="w-60 h-10 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"/>
+            <button onClick={handleDeleteVehicle} className="bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400">Delete Vehicle</button>
 
 
             <br/>
