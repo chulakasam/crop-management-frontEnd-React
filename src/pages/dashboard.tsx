@@ -122,18 +122,21 @@ export function Dashboard(){
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
                             <div className="bg-white rounded-lg shadow-md p-4">
+                                <i className="fas fa-tractor text-green-500 text-3xl"></i>
                                 <h3 className="text-lg font-semibold text-gray-600">Total Fields</h3>
                                 <p className="text-4xl font-bold text-blue-600">30</p>
                             </div>
 
 
                             <div className="bg-white rounded-lg shadow-md p-4">
+                                <i className="fas fa-seedling text-green-500 text-3xl"></i>
                                 <h3 className="text-lg font-semibold text-gray-600">Total Crops</h3>
                                 <p className="text-4xl font-bold text-green-600">12</p>
                             </div>
 
 
                             <div className="bg-white rounded-lg shadow-md p-4">
+                                <i className="fas fa-cogs text-green-500 text-3xl"></i>
                                 <h3 className="text-lg font-semibold text-gray-600">Active Equipment</h3>
                                 <p className="text-4xl font-bold text-yellow-600">18</p>
                             </div>
