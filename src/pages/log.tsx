@@ -25,7 +25,8 @@ export function Log(){
         <>
             <br/>
 
-            <h2 className="text-3xl font-bold text-gray-800">Monitoring logs Management</h2>
+            <h2 className="text-3xl font-bold text-gray-800"><i className="fas fa-clipboard-list text-green-500 text-3xl"></i> Monitoring
+                logs Management</h2>
             <br/>
             <Link to="/log/addLog">
                 <button

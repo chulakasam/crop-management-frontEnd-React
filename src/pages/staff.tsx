@@ -79,7 +79,8 @@ export function Staff(){
 
     return (
         <>
-            <h2 className="text-3xl font-bold text-gray-800">Staff Management</h2>
+            <h2 className="text-3xl font-bold text-gray-800"><i className="fas fa-users text-green-500 text-3xl"></i> Staff
+                Management</h2>
             <br/>
 
             <Link to="/staff/addStaff">

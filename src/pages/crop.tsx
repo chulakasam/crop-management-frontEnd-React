@@ -22,7 +22,8 @@ export function Crop(){
         <>
             <br/>
 
-            <h2 className="text-3xl font-bold text-gray-800">Crop Management</h2>
+            <h2 className="text-3xl font-bold text-gray-800"><i className="fas fa-seedling text-green-500 text-3xl"></i> Crop
+                Management</h2>
             <br/>
             <Link to="/crop/addCrop">
                 <button

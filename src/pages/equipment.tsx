@@ -23,7 +23,8 @@ export function Equipment(){
 
             <br/>
 
-            <h2 className="text-3xl font-bold text-gray-800">Equipment Management</h2>
+            <h2 className="text-3xl font-bold text-gray-800"> <i className="fas fa-cogs text-green-500 text-3xl"></i> Equipment
+                Management</h2>
             <br/>
             <Link to="/equipment/addEquipment">
                 <button

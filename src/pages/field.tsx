@@ -73,7 +73,8 @@ export function Field(){
     return (
         <>
             <br/>
-            <h2 className="text-3xl font-bold text-gray-800">Field Management</h2>
+            <h2 className="text-3xl font-bold text-gray-800"> <i className="fas fa-tractor text-green-500 text-3xl"></i> Field
+                Management</h2>
             <br/>
             <Link to="/field/addField">
                 <button

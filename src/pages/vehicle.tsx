@@ -72,7 +72,8 @@ export function Vehicle() {
         <>
             <br/>
 
-            <h2 className="text-3xl font-bold text-gray-800">Vehicle Management</h2>
+            <h2 className="text-3xl font-bold text-gray-800"> <i className="fas fa-truck text-green-500 text-3xl"></i> Vehicle
+                Management</h2>
             <br/>
             <Link to="/vehicle/addVehicle">
                 <button

@@ -1,4 +1,6 @@
 import {useState} from "react";
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 export function Dashboard(){
 
@@ -92,19 +94,22 @@ export function Dashboard(){
                                 <a href="#" className="block py-2 px-4 rounded hover:bg-gray-700">Dashboard</a>
                             </li>
                             <li>
-                                <a href="#" className="block py-2 px-4 rounded hover:bg-gray-700">Fields</a>
+                                <a href="#" className="block py-2 px-4 rounded hover:bg-gray-700"> <i className="fas fa-tractor text-green-500 text-3xl"></i> Fields</a>
                             </li>
                             <li>
-                                <a href="#" className="block py-2 px-4 rounded hover:bg-gray-700">Crops</a>
+                                <a href="#" className="block py-2 px-4 rounded hover:bg-gray-700"><i className="fas fa-seedling text-green-500 text-3xl"></i> Crops</a>
                             </li>
                             <li>
-                                <a href="#" className="block py-2 px-4 rounded hover:bg-gray-700">Equipment</a>
+                                <a href="#" className="block py-2 px-4 rounded hover:bg-gray-700"><i className="fas fa-cogs text-green-500 text-3xl"></i> Equipment</a>
                             </li>
                             <li>
-                                <a href="#" className="block py-2 px-4 rounded hover:bg-gray-700">Staff</a>
+                                <a href="#" className="block py-2 px-4 rounded hover:bg-gray-700"><i className="fas fa-users text-green-500 text-3xl"></i> Staff</a>
                             </li>
                             <li>
-                                <a href="#" className="block py-2 px-4 rounded hover:bg-gray-700">Reports</a>
+                                <a href="#" className="block py-2 px-4 rounded hover:bg-gray-700"><i className="fas fa-truck text-green-500 text-3xl"></i> Vehicle</a>
+                            </li>
+                            <li>
+                                <a href="#" className="block py-2 px-4 rounded hover:bg-gray-700"><i className="fas fa-clipboard-list text-green-500 text-3xl"></i> Monitoring Log</a>
                             </li>
                         </ul>
                     </aside>
