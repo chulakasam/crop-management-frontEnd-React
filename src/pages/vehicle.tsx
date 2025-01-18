@@ -72,7 +72,8 @@ export function Vehicle() {
         <>
             <br/>
 
-            <h2 className="text-3xl font-bold text-gray-800"> <i className="fas fa-truck text-green-500 text-3xl"></i> Vehicle
+            <h2 className="text-3xl font-bold text-gray-800"><i
+                className="fas fa-truck text-green-500 text-3xl"></i> Vehicle
                 Management</h2>
             <br/>
             <Link to="/vehicle/addVehicle">
@@ -93,36 +94,6 @@ export function Vehicle() {
                 Vehicle
             </button>
 
-            {foundVehicle && (
-                <div>
-                    <h3>Update Vehicle:</h3>
-                    <p>
-                        <strong>Current Vehicle No:</strong> {foundVehicle.vehicleCode}
-                        <br/>
-                        <strong>Current Category:</strong> {foundVehicle.category}
-                        <br/>
-                        <strong>Current Status:</strong> {foundVehicle.status}
-                        <br/>
-                        <strong>Current Fuel type:</strong> {foundVehicle.fuelType}
-                        <br/>
-                        <strong>Current Remark:</strong> {foundVehicle.remark}
-                        <br/>
-                    </p>
-                    <input type="text" placeholder="New vehicle code" value={newVehicleCode}
-                           onChange={(e) => setNewVehicleCode(e.target.value)}/>
-                    <input type="text" placeholder="New category" value={newCategory}
-                           onChange={(e) => setNewCategory(e.target.value)}/>
-                    <input type="text" placeholder="New status" value={newStatus}
-                           onChange={(e) => setNewStatus(e.target.value)}/>
-                    <input type="text" placeholder="New fuel type" value={newFuelType}
-                           onChange={(e) => setNewFuelType(e.target.value)}/>
-                    <input type="text" placeholder="New remark" value={newRemark}
-                           onChange={(e) => setNewRemark(e.target.value)}/>
-                    <button onClick={handleUpdateVehicle}>Update vehicle</button>
-                </div>
-            )}
-
-
             {/*TODO ----------------function delete*/}
 
 
@@ -133,51 +104,104 @@ export function Vehicle() {
                     className="bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400">Delete
                 Vehicle
             </button>
+            <div className="max-w-8xl mx-auto px-4 py-8">
+                <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-8">
+
+                    {foundVehicle && (
+
+                        <div className="lg:w-1/3 bg-gray-100 p-8 rounded-lg shadow-lg text-left">
+                            <h3 className="text-3xl font-bold text-gray-900 mb-6">Update Vehicle:</h3>
 
 
-            <br/>
+                            <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
+                                <h4 className="text-xl font-semibold text-gray-700 mb-4">Current Vehicle Details</h4>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <p>
+                                        <strong className="text-gray-600">Current Vehicle No:</strong>
+                                        <span className="text-gray-900">{foundVehicle.vehicleCode}</span>
+                                    </p>
+
+                                    <p>
+                                        <strong className="text-gray-600">Current Category:</strong>
+                                        <span className="text-gray-900">{foundVehicle.category}</span>
+                                    </p>
+
+                                    <p>
+                                        <strong className="text-gray-600">Current Status:</strong>
+                                        <span className="text-gray-900">{foundVehicle.status}</span>
+                                    </p>
+
+                                    <p>
+                                        <strong className="text-gray-600">Current Fuel type:</strong>
+                                        <span className="text-gray-900">{foundVehicle.fuelType}</span>
+                                    </p>
+
+                                    <p>
+                                        <strong className="text-gray-600">Current Remark:</strong>
+                                        <span className="text-gray-900">{foundVehicle.remark}</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="bg-white p-6 rounded-lg shadow-sm">
+                                <h4 className="text-xl font-semibold text-gray-700 mb-4">Update Vehicle Details</h4>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                                    <input type="text" placeholder="New vehicle code" value={newVehicleCode}
+                                           onChange={(e) => setNewVehicleCode(e.target.value)}/>
+                                    <input type="text" placeholder="New category" value={newCategory}
+                                           onChange={(e) => setNewCategory(e.target.value)}/>
+                                    <input type="text" placeholder="New status" value={newStatus}
+                                           onChange={(e) => setNewStatus(e.target.value)}/>
+                                    <input type="text" placeholder="New fuel type" value={newFuelType}
+                                           onChange={(e) => setNewFuelType(e.target.value)}/>
+                                    <input type="text" placeholder="New remark" value={newRemark}
+                                           onChange={(e) => setNewRemark(e.target.value)}/>
+                                    <button onClick={handleUpdateVehicle}
+                                            className="w-full bg-indigo-600 text-white py-3 px-4 mt-6 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400">Update
+                                        vehicle
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
 
 
-            {/*<ul>*/}
-            {/*    {vehicle.map((vehicleDetails: any, index: number) => (*/}
-            {/*        <li key={index}>*/}
-            {/*            {vehicleDetails.licenseNo}, {vehicleDetails.vehicleCode},{vehicleDetails.category},{vehicleDetails.status},{vehicleDetails.fuelType},{vehicleDetails.remark}*/}
-            {/*        </li>*/}
-            {/*    ))}*/}
-            {/*</ul>*/}
+                                <br/>
 
-            <div className="overflow-x-auto">
-                <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
-                    <thead>
-                    <tr className="bg-teal-900 text-white text-left">
-                        <th className="py-2 px-4 border-b">License No</th>
-                        <th className="py-2 px-4 border-b">Vehicle Code</th>
-                        <th className="py-2 px-4 border-b">Category</th>
-                        <th className="py-2 px-4 border-b">Status</th>
-                        <th className="py-2 px-4 border-b">Fuel Type</th>
-                        <th className="py-2 px-4 border-b">Remark</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {vehicle.map((vehicleDetails: any, index: number) => (
-                        <tr
-                            key={index}
-                            className={`${
-                                index % 2 === 0 ? "bg-gray-50" : "bg-white"
-                            } hover:bg-gray-100`}
-                        >
-                            <td className="py-2 px-4 border-b">{vehicleDetails.licenseNo}</td>
-                            <td className="py-2 px-4 border-b">{vehicleDetails.vehicleCode}</td>
-                            <td className="py-2 px-4 border-b">{vehicleDetails.category}</td>
-                            <td className="py-2 px-4 border-b">{vehicleDetails.status}</td>
-                            <td className="py-2 px-4 border-b">{vehicleDetails.fuelType}</td>
-                            <td className="py-2 px-4 border-b">{vehicleDetails.remark}</td>
-                        </tr>
-                    ))}
-                    </tbody>
-                </table>
-            </div>
+                                <div className="overflow-x-auto">
+                                    <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+                                        <thead>
+                                        <tr className="bg-teal-900 text-white text-left">
+                                            <th className="py-2 px-4 border-b">License No</th>
+                                            <th className="py-2 px-4 border-b">Vehicle Code</th>
+                                            <th className="py-2 px-4 border-b">Category</th>
+                                            <th className="py-2 px-4 border-b">Status</th>
+                                            <th className="py-2 px-4 border-b">Fuel Type</th>
+                                            <th className="py-2 px-4 border-b">Remark</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {vehicle.map((vehicleDetails: any, index: number) => (
+                                            <tr
+                                                key={index}
+                                                className={`${
+                                                    index % 2 === 0 ? "bg-gray-50" : "bg-white"
+                                                } hover:bg-gray-100`}
+                                            >
+                                                <td className="py-2 px-4 border-b">{vehicleDetails.licenseNo}</td>
+                                                <td className="py-2 px-4 border-b">{vehicleDetails.vehicleCode}</td>
+                                                <td className="py-2 px-4 border-b">{vehicleDetails.category}</td>
+                                                <td className="py-2 px-4 border-b">{vehicleDetails.status}</td>
+                                                <td className="py-2 px-4 border-b">{vehicleDetails.fuelType}</td>
+                                                <td className="py-2 px-4 border-b">{vehicleDetails.remark}</td>
+                                            </tr>
+                                        ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
 
-        </>
-    )
-}
+                        </>
+                        )
+                    }
