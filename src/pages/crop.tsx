@@ -32,7 +32,8 @@ export function Crop(){
                 </button>
             </Link>
             {/*TODO ----------------function update*/}
-            <button>Update Crop</button>
+            <input type="text" placeholder="enter the crop ID" className="w-60 h-10 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"/>
+            <button className="bg-gray-200 text-gray-800 font-medium py-2 px-4 rounded hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400" >Search Crop</button>
 
             {/*TODO ----------------function delete*/}
             <input type="text" placeholder="enter the crop code" value={deleteCropCode}
