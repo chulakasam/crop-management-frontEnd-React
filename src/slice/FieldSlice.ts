@@ -1,6 +1,7 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import Field from "../model/Field.ts";
 import axios from "axios";
+import {getAllVehicle, removeVehicle, saveVehicle, updatingVehicle} from "./VehicleSlice.ts";
 const initialState:Field[] = [];
 
 
@@ -33,7 +34,18 @@ export const removeField=createAsyncThunk(
     }
 )
 
+export const getAllField=createAsyncThunk(
+    "field/view",
+    async ()=>{
+        try {
+            const response = await api.get("/view");
+            return response.data;
+        }catch (error:any){
+            return error.response?.data || error.message;
+        }
 
+    }
+)
 
 
 
@@ -60,6 +72,27 @@ const FieldSlice = createSlice({
 
             }
         }
+    },
+    extraReducers:(builder)=>{
+        builder
+            .addCase(saveField.fulfilled, (state, action)=>{
+                state.push(action.payload);
+            })
+            .addCase(removeField.fulfilled, (state, action)=>{
+                return state.filter((field) => field.fieldCode !== action.payload);
+            })
+            .addCase(getAllField.fulfilled, (state, action)=>{
+                return action.payload;
+            })
+            // .addCase(updatingField.fulfilled, (state, action)=>{
+            //     const index = state.findIndex(
+            //         (field) => field.fieldCode === action.payload.fieldCode
+            //     );
+            //     if (index !== -1) {
+            //         state[index] = action.payload;
+            //     }
+            // })
+
     }
 })
 export default FieldSlice.reducer;

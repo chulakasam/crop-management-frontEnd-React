@@ -1,10 +1,11 @@
 import {Link} from "react-router";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import * as React from "react";
-import {deleteField, removeField, updateField} from "../slice/FieldSlice.ts";
-import {getAllVehicle, removeVehicle} from "../slice/VehicleSlice.ts";
+import {getAllField, removeField, updateField} from "../slice/FieldSlice.ts";
+
 import {AppDispatch} from "../store/store.ts";
+import {getAllVehicle} from "../slice/VehicleSlice.ts";
 
 
 export function Field(){
@@ -22,7 +23,19 @@ export function Field(){
     const [newFieldImage_1, setNewFieldImage_1] = useState('');
     const [newFieldImage_2, setNewFieldImage_2] = useState('');
 
+
+    useEffect(() => {
+        dispatch(getAllField());
+    }, [dispatch]);
+
     function handleSearchField(event:React.FormEvent){
+
+
+
+
+
+
+
         event.preventDefault();
         const found = field.find((f: any) => f.fieldCode === searchFieldCode);
         if (found) {
@@ -30,10 +43,8 @@ export function Field(){
             setNewFieldName(found.fieldName);
             setNewFieldLocation(found.location);
             setNewFieldSize(found.fieldSize);
-            setNewFieldImage_1(found.fieldImg_01);
-            setNewFieldImage_2(found.fieldImg_02);
-
-
+            setNewFieldImage_1(found.fieldImg01);
+            setNewFieldImage_2(found.fieldImg02);
         } else {
             alert('field not found.');
             setFoundField(null);
@@ -64,10 +75,15 @@ export function Field(){
 
 
 
+
+
+
+
     const handleDeleteField=async (event:React.FormEvent)=>{
         event.preventDefault();
         if(window.confirm("Are you sure you want to delete this Field ?")){
             await dispatch(removeField(deleteFieldCode));
+            dispatch(getAllField);
         }
     }
 
@@ -235,8 +251,8 @@ export function Field(){
                                             <td className="py-2 px-4 border-b">{fieldDetails.fieldName}</td>
                                             <td className="py-2 px-4 border-b">{fieldDetails.location}</td>
                                             <td className="py-2 px-4 border-b">{fieldDetails.fieldSize}</td>
-                                            <td className="py-2 px-4 border-b">{fieldDetails.fieldImg_01}</td>
-                                            <td className="py-2 px-4 border-b">{fieldDetails.fieldImg_02}</td>
+                                            <td className="py-2 px-4 border-b">{fieldDetails.fieldImg01}</td>
+                                            <td className="py-2 px-4 border-b">{fieldDetails.fieldImg02}</td>
                                         </tr>
                                     ))}
                                     </tbody>
