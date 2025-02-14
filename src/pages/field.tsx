@@ -2,12 +2,14 @@ import {Link} from "react-router";
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import * as React from "react";
-import {deleteField, updateField} from "../slice/FieldSlice.ts";
+import {deleteField, removeField, updateField} from "../slice/FieldSlice.ts";
+import {getAllVehicle, removeVehicle} from "../slice/VehicleSlice.ts";
+import {AppDispatch} from "../store/store.ts";
 
 
 export function Field(){
     const field = useSelector((state: any) => state.field);
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
 
     const [deleteFieldCode, setDeleteFieldCode] = useState('');
 
@@ -62,14 +64,37 @@ export function Field(){
 
 
 
-    function handleDeleteField(event:React.FormEvent){
+    const handleDeleteField=async (event:React.FormEvent)=>{
         event.preventDefault();
-        if(!deleteFieldCode){
-            alert("please enter the field code...");
+        if(window.confirm("Are you sure you want to delete this Field ?")){
+            await dispatch(removeField(deleteFieldCode));
         }
-        dispatch(deleteField(deleteFieldCode));
-        setDeleteFieldCode('');
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // function handleDeleteField(event:React.FormEvent){
+    //     event.preventDefault();
+    //     if(!deleteFieldCode){
+    //         alert("please enter the field code...");
+    //     }
+    //     dispatch(deleteField(deleteFieldCode));
+    //     setDeleteFieldCode('');
+    // }
     return (
         <>
             <br/>

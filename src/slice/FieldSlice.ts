@@ -21,6 +21,19 @@ export const saveField=createAsyncThunk(
 )
 
 
+export const removeField=createAsyncThunk(
+    "field/delete",
+    async (fieldCode:string,{rejectWithValue})=>{
+        try {
+            const response=await api.delete(`/delete/${fieldCode}`);
+            return response.data
+        }catch (error:any) {
+            return rejectWithValue(error.response?.data || error.message);
+        }
+    }
+)
+
+
 
 
 
