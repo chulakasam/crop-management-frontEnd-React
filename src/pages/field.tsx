@@ -29,13 +29,6 @@ export function Field(){
     }, [dispatch]);
 
     function handleSearchField(event:React.FormEvent){
-
-
-
-
-
-
-
         event.preventDefault();
         const found = field.find((f: any) => f.fieldCode === searchFieldCode);
         if (found) {
@@ -168,11 +161,11 @@ export function Field(){
                                     </p>
                                     <p>
                                         <strong className="text-gray-600">Current Field Image 01:</strong>{" "}
-                                        <span className="text-gray-900">{foundField.fieldImg_01}</span>
+                                        <span className="text-gray-900">{foundField.fieldImg01}</span>
                                     </p>
                                     <p>
                                         <strong className="text-gray-600">Current Field Image 02:</strong>{" "}
-                                        <span className="text-gray-900">{foundField.fieldImg_02}</span>
+                                        <span className="text-gray-900">{foundField.fieldImg02}</span>
                                     </p>
                                 </div>
                             </div>
