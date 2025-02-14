@@ -16,3 +16,4 @@ export const store = configureStore({
         log:LogSlice,
     },
 });
+export type AppDispatch = typeof store.dispatch;

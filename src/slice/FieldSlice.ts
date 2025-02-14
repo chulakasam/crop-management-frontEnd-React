@@ -1,5 +1,28 @@
-import {createSlice} from "@reduxjs/toolkit";
-const initialState = [];
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import Field from "../model/Field.ts";
+import axios from "axios";
+const initialState:Field[] = [];
+
+
+const api = axios.create({
+    baseURL: "http://localhost:3000/field",
+});
+
+export const saveField=createAsyncThunk(
+    "field/add",
+    async (field:Field,{rejectWithValue})=>{
+        try{
+            const response = await api.post("/add",field);
+            return response.data;
+        }catch (error:any){
+            return rejectWithValue(error.response?.data || error.message);
+        }
+    }
+)
+
+
+
+
 
 
 const FieldSlice = createSlice({

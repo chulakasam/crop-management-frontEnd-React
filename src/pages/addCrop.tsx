@@ -30,6 +30,14 @@ export function AddCrop() {
         setSeason('');
         setFieldCode('');
     }
+
+
+
+
+
+
+
+
     return (
         <>
             <br/>

@@ -1,11 +1,17 @@
 import {useDispatch, useSelector} from "react-redux";
-import {addNewVehicle} from "../slice/VehicleSlice.ts";
+
 import {useState} from "react";
+import {saveVehicle} from "../slice/VehicleSlice.ts";
+import Vehicle from "../model/Vehicle.ts";
+import {AppDispatch} from "../store/store.ts";
+
+
+
 
 export function AddVehicle(){
 
     const vehicle = useSelector((state:any) => state.vehicle);
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
 
     const [licenseNo, setLicenseNo] = useState('');
     const [vehicleCode, setVehicleCode] = useState('');
@@ -16,38 +22,44 @@ export function AddVehicle(){
 
 
 
-    function handleSubmitVehicle(event: React.FormEvent){
+    // function handleSubmitVehicle(event: React.FormEvent){
+    //     event.preventDefault();
+    //     dispatch(addNewVehicle({licenseNo, vehicleCode, category, status, fuelType,remark}));
+    //     setLicenseNo('');
+    //     setVehicleCode('');
+    //     setCategory('');
+    //     setStatus('');
+    //     setFuelType('');
+    //     setRemark('');
+    // }
+
+
+
+const handleSubmitVehicle=async (event:React.FormEvent)=>{
         event.preventDefault();
-        dispatch(addNewVehicle({licenseNo, vehicleCode, category, status, fuelType,remark}));
-        setLicenseNo('');
-        setVehicleCode('');
-        setCategory('');
-        setStatus('');
-        setFuelType('');
-        setRemark('');
-    }
+        const newVehicle=new Vehicle(licenseNo, vehicleCode, category, status, fuelType, remark);
+        dispatch(saveVehicle(newVehicle));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     return(
         <>
             <br/>
-            {/*<div>*/}
-            {/*    <h2>Add New Vehicle</h2>*/}
-            {/*    <form>*/}
-            {/*        <label>License No: <input type="text" name="license_no" value={licenseNo}*/}
-            {/*                                  onChange={(e) => setLicenseNo(e.target.value)}/></label><br/>*/}
-            {/*        <label>Vehicle code: <input type="text" name="vehicle_code" value={vehicleCode}*/}
-            {/*                                    onChange={(e) => setVehicleCode(e.target.value)}/></label><br/>*/}
-            {/*        <label>Category: <input type="text" name="category" value={category}*/}
-            {/*                                onChange={(e) => setCategory(e.target.value)}/></label><br/>*/}
-            {/*        <label>Status: <input type="text" name="status" value={status}*/}
-            {/*                              onChange={(e) => setStatus(e.target.value)}/></label><br/>*/}
-            {/*        <label>Fuel type: <input type="text" name="fuel_type" value={fuelType}*/}
-            {/*                                 onChange={(e) => setFuelType(e.target.value)}/></label><br/>*/}
-            {/*        <label>Remark: <input type="text" name="remark" value={remark}*/}
-            {/*                              onChange={(e) => setRemark(e.target.value)}/></label><br/>*/}
 
-            {/*        <button type="submit" onClick={handleSubmitVehicle} className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">Add Vehicle</button>*/}
-            {/*    </form>*/}
-            {/*</div>*/}
             <div className="max-w-lg mx-auto mt-8 p-6 bg-white rounded-lg shadow-lg">
                 <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Add New Vehicle</h2>
                 <form className="space-y-4">

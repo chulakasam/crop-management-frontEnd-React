@@ -1,12 +1,13 @@
 import {Link} from "react-router";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import * as React from "react";
-import {deleteVehicle, updateVehicle} from "../slice/VehicleSlice.ts";
+import {deleteVehicle, getAllVehicle, removeVehicle, updateVehicle, updatingVehicle} from "../slice/VehicleSlice.ts";
+import {AppDispatch} from "../store/store.ts";
 
 export function Vehicle() {
     const vehicle = useSelector((state:any) => state.vehicle);
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
     const [deleteLicenseNo,setDeleteLicenseNo] = useState('');
 
 
@@ -18,31 +19,33 @@ export function Vehicle() {
     const [newStatus, setNewStatus] = useState('');
     const [newFuelType, setNewFuelType] = useState('');
     const [newRemark, setNewRemark] = useState('');
+    const [editingId, setEditingId] = useState<string | null>(null);
+
+    useEffect(() => {
+        dispatch(getAllVehicle());
+    }, [dispatch]);
 
 
 
-
-    function handleDeleteVehicle(event:React.FormEvent){
+    const handleDeleteVehicle=async (event:React.FormEvent)=>{
         event.preventDefault();
-        if (!deleteLicenseNo) {
-            alert('Please enter the license no to delete.');
-            return;
+        if(window.confirm("Are you sure you want to delete this vehicle ?")){
+          await dispatch(removeVehicle(deleteLicenseNo));
+          dispatch(getAllVehicle())
         }
-        dispatch(deleteVehicle(deleteLicenseNo));
-        setDeleteLicenseNo('');
-
     }
+
 
     function handleSearchVehicle(event:React.FormEvent){
         event.preventDefault();
-        const found = vehicle.find((v: any) => v.licenseNo === searchLicenseNo);
+        const found = vehicle.find((v: any) => v.LicenseNo === searchLicenseNo);
         if (found) {
             setFoundVehicle(found);
-            setNewVehicleCode(found.vehicleCode);
-            setNewCategory(found.category);
-            setNewStatus(found.status);
-            setNewFuelType(found.fuelType);
-            setNewRemark(found.remark);
+            setNewVehicleCode(found.VehicleCode);
+            setNewCategory(found.Category);
+            setNewStatus(found.Status);
+            setNewFuelType(found.FuelType);
+            setNewRemark(found.Remark);
 
         } else {
             alert('vehicle not found.');
@@ -50,22 +53,44 @@ export function Vehicle() {
         }
     }
 
-    function handleUpdateVehicle(event:React.FormEvent){
-        event.preventDefault();
-        if(foundVehicle){
-            dispatch(updateVehicle({licenseNo:foundVehicle.licenseNo,newVehicleCode,newCategory,newStatus,newFuelType,newRemark}));
+    // function handleUpdateVehicle(event:React.FormEvent){
+    //     event.preventDefault();
+    //     if(foundVehicle){
+    //         dispatch(updateVehicle({licenseNo:foundVehicle.licenseNo,newVehicleCode,newCategory,newStatus,newFuelType,newRemark}));
+    //
+    //         alert("vehicle updated successfully.");
+    //         setNewVehicleCode('');
+    //         setNewCategory('');
+    //         setNewStatus('');
+    //         setNewFuelType('');
+    //         setNewRemark('');
+    //     }else{
+    //         alert("vehicle not found.");
+    //         setFoundVehicle(null);
+    //     }
+    // }
 
-            alert("vehicle updated successfully.");
-            setNewVehicleCode('');
-            setNewCategory('');
-            setNewStatus('');
-            setNewFuelType('');
-            setNewRemark('');
-        }else{
-            alert("vehicle not found.");
-            setFoundVehicle(null);
+    const handleUpdateVehicle = async (event: React.FormEvent) => {
+        event.preventDefault();
+
+        if (!vehicle) {
+            console.error("Vehicle data is missing!");
+            return;
         }
-    }
+
+        dispatch(updatingVehicle(vehicle));
+    };
+
+
+
+
+
+
+
+
+
+
+
 
 
     return (
@@ -104,6 +129,8 @@ export function Vehicle() {
                     className="bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400">Delete
                 Vehicle
             </button>
+
+
             <div className="max-w-8xl mx-auto px-4 py-8">
                 <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-8">
 
@@ -118,27 +145,27 @@ export function Vehicle() {
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <p>
                                         <strong className="text-gray-600">Current Vehicle No:</strong>
-                                        <span className="text-gray-900">{foundVehicle.vehicleCode}</span>
+                                        <span className="text-gray-900">{foundVehicle.VehicleCode}</span>
                                     </p>
 
                                     <p>
                                         <strong className="text-gray-600">Current Category:</strong>
-                                        <span className="text-gray-900">{foundVehicle.category}</span>
+                                        <span className="text-gray-900">{foundVehicle.Category}</span>
                                     </p>
 
                                     <p>
                                         <strong className="text-gray-600">Current Status:</strong>
-                                        <span className="text-gray-900">{foundVehicle.status}</span>
+                                        <span className="text-gray-900">{foundVehicle.Status}</span>
                                     </p>
 
                                     <p>
                                         <strong className="text-gray-600">Current Fuel type:</strong>
-                                        <span className="text-gray-900">{foundVehicle.fuelType}</span>
+                                        <span className="text-gray-900">{foundVehicle.FuelType}</span>
                                     </p>
 
                                     <p>
                                         <strong className="text-gray-600">Current Remark:</strong>
-                                        <span className="text-gray-900">{foundVehicle.remark}</span>
+                                        <span className="text-gray-900">{foundVehicle.Remark}</span>
                                     </p>
                                 </div>
                             </div>
@@ -184,16 +211,18 @@ export function Vehicle() {
                                         {vehicle.map((vehicleDetails: any, index: number) => (
                                             <tr
                                                 key={index}
+
                                                 className={`${
                                                     index % 2 === 0 ? "bg-gray-50" : "bg-white"
                                                 } hover:bg-gray-100`}
+
                                             >
-                                                <td className="py-2 px-4 border-b">{vehicleDetails.licenseNo}</td>
-                                                <td className="py-2 px-4 border-b">{vehicleDetails.vehicleCode}</td>
-                                                <td className="py-2 px-4 border-b">{vehicleDetails.category}</td>
-                                                <td className="py-2 px-4 border-b">{vehicleDetails.status}</td>
-                                                <td className="py-2 px-4 border-b">{vehicleDetails.fuelType}</td>
-                                                <td className="py-2 px-4 border-b">{vehicleDetails.remark}</td>
+                                                <td className="py-2 px-4 border-b">{vehicleDetails.LicenseNo}</td>
+                                                <td className="py-2 px-4 border-b">{vehicleDetails.VehicleCode}</td>
+                                                <td className="py-2 px-4 border-b">{vehicleDetails.Category}</td>
+                                                <td className="py-2 px-4 border-b">{vehicleDetails.Status}</td>
+                                                <td className="py-2 px-4 border-b">{vehicleDetails.FuelType}</td>
+                                                <td className="py-2 px-4 border-b">{vehicleDetails.Remark}</td>
                                             </tr>
                                         ))}
                                         </tbody>

@@ -1,11 +1,14 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useState} from "react";
-import {addNewField} from "../slice/FieldSlice.ts";
+import {addNewField, saveField} from "../slice/FieldSlice.ts";
+import * as React from "react";
+import Field from "../model/Field.ts";
+import {AppDispatch} from "../store/store.ts";
 
 export function AddField(){
 
     const field = useSelector((state:any) => state.field);
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
 
     const [fieldCode, setFieldCode] = useState('');
     const [fieldName, setFieldName] = useState('');
@@ -15,17 +18,26 @@ export function AddField(){
     const [fieldImg_02, setFieldImg_02] = useState('');
 
 
-    function handleSubmitField(event: React.FormEvent){
+    // function handleSubmitField(event: React.FormEvent){
+    //     event.preventDefault();
+    //     dispatch(addNewField({fieldCode,fieldName,location,fieldSize,fieldImg_01,fieldImg_02}))
+    //     setFieldCode('');
+    //     setFieldName('');
+    //     setLocation('');
+    //     setFieldSize('');
+    //     setFieldImg_01('');
+    //     setFieldImg_02('');
+    //
+    // }
+
+    const handleSubmitField=async (event:React.FormEvent)=>{
         event.preventDefault();
-        dispatch(addNewField({fieldCode,fieldName,location,fieldSize,fieldImg_01,fieldImg_02}))
-        setFieldCode('');
-        setFieldName('');
-        setLocation('');
-        setFieldSize('');
-        setFieldImg_01('');
-        setFieldImg_02('');
+        const newField = new Field(fieldCode,fieldName,location,Number(fieldSize),fieldImg_01,fieldImg_02);
+        dispatch(saveField(newField));
 
     }
+
+
 
 
 
