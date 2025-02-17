@@ -3,7 +3,7 @@ import * as React from "react";
 import {useDispatch, useSelector} from "react-redux";
 
 import {useEffect, useState} from "react";
-import {removeLog} from "../slice/LogSlice.ts";
+import {getAllLogs, removeLog} from "../slice/LogSlice.ts";
 import {getAllVehicle} from "../slice/VehicleSlice.ts";
 import {AppDispatch} from "../store/store.ts";
 
@@ -12,7 +12,7 @@ export function Log(){
     const dispatch = useDispatch<AppDispatch>();
     const [deleteLogCode, setDeleteLogCode] = useState('')
     useEffect(() => {
-        dispatch(getAllVehicle());
+        dispatch(getAllLogs());
     }, [dispatch]);
 
     function handleDeleteLog(event:React.FormEvent){
