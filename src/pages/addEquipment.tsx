@@ -1,10 +1,12 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useState} from "react";
-import {addNewEquipment} from "../slice/EquipmentSlice.ts";
+import {addNewEquipment, saveEquipment} from "../slice/EquipmentSlice.ts";
+import Equipment from "../model/Equipment.ts";
+import {AppDispatch} from "../store/store.ts";
 
 export function AddEquipment() {
     const equipment = useSelector((state:any) => state.equipment);
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
 
     const [equipmentId, setEquipmentId] = useState('');
     const [equipmentName, setEquipmentName] = useState('');
@@ -15,13 +17,15 @@ export function AddEquipment() {
 
     function handleSubmitEquipment(event: React.FormEvent){
         event.preventDefault();
-        dispatch(addNewEquipment({equipmentId,equipmentName,equipmentType,equipmentStatus,staffId,fieldCode}));
-        setEquipmentId('');
-        setEquipmentName('');
-        setEquipmentType('');
-        setEquipmentStatus('');
-        setStaffId('');
-        setFieldCode('');
+        // dispatch(addNewEquipment({equipmentId,equipmentName,equipmentType,equipmentStatus,staffId,fieldCode}));
+        // setEquipmentId('');
+        // setEquipmentName('');
+        // setEquipmentType('');
+        // setEquipmentStatus('');
+        // setStaffId('');
+        // setFieldCode('');
+        const newEquipment= new Equipment(equipmentId,equipmentName,equipmentType,equipmentStatus,staffId,fieldCode);
+        dispatch(saveEquipment(newEquipment))
     }
 
     return (

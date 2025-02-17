@@ -78,7 +78,7 @@ export function Vehicle() {
             return;
         }
 
-        dispatch(updatingVehicle(vehicle));
+        dispatch(updateVehicle({licenseNo:foundVehicle.licenseNo,newVehicleCode,newCategory,newStatus,newFuelType,newRemark}));
     };
 
 

@@ -1,22 +1,28 @@
 import {Link} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import * as React from "react";
 
-import {deleteCrop} from "../slice/CropSlice.ts";
+import {deleteCrop, getAllCrop, removeCrop} from "../slice/CropSlice.ts";
+import {AppDispatch} from "../store/store.ts";
+import {getAllField} from "../slice/FieldSlice.ts";
 
 export function Crop(){
     const crop = useSelector((state: any) => state.crop);
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
 
     const [deleteCropCode, setDeleteCropCode] = useState('');
+    useEffect(() => {
+        dispatch(getAllCrop());
+    }, [dispatch]);
     function handleDeleteCrop(event:React.FormEvent){
         event.preventDefault();
         if(!deleteCropCode){
             alert("please enter the crop code...");
         }
-        dispatch(deleteCrop(deleteCropCode));
+        dispatch(removeCrop(deleteCropCode));
         setDeleteCropCode('');
+        dispatch(getAllCrop())
     }
     return(
         <>
@@ -58,7 +64,7 @@ export function Crop(){
                     <tr className="bg-teal-900 text-white text-left">
                         <th className="py-2 px-4 border-b">Crop ID</th>
                         <th className="py-2 px-4 border-b">Crop Name</th>
-                        <th className="py-2 px-4 border-b">Scientific Name</th>
+
                         <th className="py-2 px-4 border-b">Image</th>
                         <th className="py-2 px-4 border-b">Category</th>
                         <th className="py-2 px-4 border-b">Season</th>
@@ -75,7 +81,7 @@ export function Crop(){
                         >
                             <td className="py-2 px-4 border-b">{cropDetails.cropId}</td>
                             <td className="py-2 px-4 border-b">{cropDetails.cropName}</td>
-                            <td className="py-2 px-4 border-b">{cropDetails.scientificName}</td>
+
                             <td className="py-2 px-4 border-b">
                                 <img
                                     src={cropDetails.image}

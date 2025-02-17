@@ -1,14 +1,16 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useState} from "react";
-import {addNewCrop} from "../slice/CropSlice.ts";
+import {addNewCrop, saveCrop} from "../slice/CropSlice.ts";
+import {AppDispatch} from "../store/store.ts";
+import Crop from "../model/Crop.ts";
 
 export function AddCrop() {
     const crop=useSelector((state:any)=>state.crop);
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
 
     const [cropId, setCropId] = useState('');
     const [cropName, setCropName] = useState('');
-    const [scientificName, setScientificName] = useState('');
+
     const [image, setImage] = useState('');
     const [category, setCategory] = useState('');
     const [season, setSeason] = useState('');
@@ -21,14 +23,16 @@ export function AddCrop() {
 
         event.preventDefault();
 
-        dispatch(addNewCrop({cropId,cropName,scientificName,image,category,season,fieldCode}));
-        setCropId('');
-        setCropName('');
-        setScientificName('');
-        setImage('');
-        setCategory('');
-        setSeason('');
-        setFieldCode('');
+        // dispatch(addNewCrop({cropId,cropName,scientificName,image,category,season,fieldCode}));
+        // setCropId('');
+        // setCropName('');
+        // setScientificName('');
+        // setImage('');
+        // setCategory('');
+        // setSeason('');
+        // setFieldCode('');
+        const newCrop = new Crop(cropId,cropName,image,category,season,fieldCode);
+        dispatch(saveCrop(newCrop));
     }
 
 
@@ -73,19 +77,6 @@ export function AddCrop() {
                         />
                     </div>
 
-                    <div>
-                        <label htmlFor="scientific_name" className="block text-sm font-medium text-gray-700">
-                            Scientific Name
-                        </label>
-                        <input
-                            type="text"
-                            id="scientific_name"
-                            name="scientific_name"
-                            value={scientificName}
-                            onChange={(e) => setScientificName(e.target.value)}
-                            className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
-                        />
-                    </div>
 
                     <div>
                         <label htmlFor="image" className="block text-sm font-medium text-gray-700">

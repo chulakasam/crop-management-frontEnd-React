@@ -1,20 +1,26 @@
 import {Link} from "react-router";
 import * as React from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {deleteLog} from "../slice/LogSlice.ts";
-import {useState} from "react";
+
+import {useEffect, useState} from "react";
+import {removeLog} from "../slice/LogSlice.ts";
+import {getAllVehicle} from "../slice/VehicleSlice.ts";
+import {AppDispatch} from "../store/store.ts";
 
 export function Log(){
     const log=useSelector((state:any)=>state.log);
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
     const [deleteLogCode, setDeleteLogCode] = useState('')
+    useEffect(() => {
+        dispatch(getAllVehicle());
+    }, [dispatch]);
 
     function handleDeleteLog(event:React.FormEvent){
         event.preventDefault();
         if(!deleteLogCode){
             alert("please enter the log code...")
         }
-        dispatch(deleteLog(deleteLogCode));
+        dispatch(removeLog(deleteLogCode));
         setDeleteLogCode('');
     }
 
@@ -64,10 +70,7 @@ export function Log(){
                         <th className="py-2 px-4 border-b">Log Date</th>
                         <th className="py-2 px-4 border-b">Observation</th>
                         <th className="py-2 px-4 border-b">Log Image</th>
-                        <th className="py-2 px-4 border-b">Field Code</th>
-                        <th className="py-2 px-4 border-b">Vehicle Code</th>
-                        <th className="py-2 px-4 border-b">Crop Code</th>
-                        <th className="py-2 px-4 border-b">Staff Code</th>
+
                     </tr>
                     </thead>
                     <tbody>
@@ -78,14 +81,11 @@ export function Log(){
                                 index % 2 === 0 ? "bg-gray-50" : "bg-white"
                             } hover:bg-gray-100`}
                         >
-                            <td className="py-2 px-4 border-b">{logDetails.logCode}</td>
-                            <td className="py-2 px-4 border-b">{logDetails.logDate}</td>
+                            <td className="py-2 px-4 border-b">{logDetails.LogCode}</td>
+                            <td className="py-2 px-4 border-b">{logDetails.date}</td>
                             <td className="py-2 px-4 border-b">{logDetails.observation}</td>
-                            <td className="py-2 px-4 border-b">{logDetails.logImage}</td>
-                            <td className="py-2 px-4 border-b">{logDetails.fieldCode}</td>
-                            <td className="py-2 px-4 border-b">{logDetails.vehicleCode}</td>
-                            <td className="py-2 px-4 border-b">{logDetails.cropCode}</td>
-                            <td className="py-2 px-4 border-b">{logDetails.staffCode}</td>
+                            <td className="py-2 px-4 border-b">{logDetails.LogImage}</td>
+
                         </tr>
                     ))}
                     </tbody>

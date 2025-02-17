@@ -1,10 +1,12 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useState} from "react";
-import {addNewStaff} from "../slice/StaffSlice.ts";
+import {addNewStaff, saveStaff} from "../slice/StaffSlice.ts";
+import {AppDispatch} from "../store/store.ts";
+import Staff from "../model/Staff.ts";
 
 export function AddStaff(){
     const staff = useSelector((state:any) => state.staff);
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
 
     const [staffId, setStaffId] = useState('');
     const [name, setName] = useState('');
@@ -15,27 +17,29 @@ export function AddStaff(){
     const [contactNo, setContactNo] = useState('');
     const [email,setEmail]=useState('');
     const [address, setAddress] = useState('');
-    const [vehicleId,setVehicleId]=useState('');
+    const [LicenseNo,setLicenseNo]=useState('');
 
     function handleSubmitStaff(event: React.FormEvent){
-
-        event.preventDefault();
-
-        dispatch(addNewStaff ({staffId,name,position,gender,joinedDate,dob,contactNo,email,address,vehicleId}));
-
-
-        setStaffId('');
-        setName('');
-        setPosition('');
-        setGender('');
-        setJoinedDate('');
-        setDob('');
-        setContactNo('');
-        setEmail('');
-        setAddress('');
-        setVehicleId('');
+event.preventDefault();
+        // event.preventDefault();
+        //
+        // dispatch(addNewStaff ({staffId,name,position,gender,joinedDate,dob,contactNo,email,address,vehicleId}));
+        //
+        //
+        // setStaffId('');
+        // setName('');
+        // setPosition('');
+        // setGender('');
+        // setJoinedDate('');
+        // setDob('');
+        // setContactNo('');
+        // setEmail('');
+        // setAddress('');
+        // setVehicleId('');
+        const newStaff = new Staff(staffId,name,position,gender,joinedDate,dob,Number(contactNo),email,address,LicenseNo)
+        dispatch(saveStaff(newStaff))
+        alert("Staff Add Successfully");
     }
-
 
 
 
@@ -180,8 +184,8 @@ export function AddStaff(){
                             type="text"
                             id="vehicle_id"
                             name="vehicle_id"
-                            value={vehicleId}
-                            onChange={(e) => setVehicleId(e.target.value)}
+                            value={LicenseNo}
+                            onChange={(e) => setLicenseNo(e.target.value)}
                             className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
                         />
                     </div>

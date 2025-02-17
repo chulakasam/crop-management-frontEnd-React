@@ -1,21 +1,27 @@
 import {Link} from "react-router";
 import * as React from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {useState} from "react";
-import {deleteEquipment} from "../slice/EquipmentSlice.ts";
+import {useEffect, useState} from "react";
+import {deleteEquipment, getAllEquipment, removeEquipment} from "../slice/EquipmentSlice.ts";
+import {AppDispatch} from "../store/store.ts";
+import {getAllField} from "../slice/FieldSlice.ts";
 
 export function Equipment(){
     const equipment = useSelector((state: any) => state.equipment);
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
 
     const [deleteEquipmentId, setDeleteEquipmentCode] = useState('');
+    useEffect(() => {
+        dispatch(getAllEquipment());
+    }, [dispatch]);
 
     function handleDeleteEquipment(event:React.FormEvent){
         event.preventDefault();
         if(!deleteEquipmentId){
             alert("please enter the equipment ID...");
         }
-        dispatch(deleteEquipment(deleteEquipmentId));
+        dispatch(removeEquipment(deleteEquipmentId));
+        dispatch(getAllEquipment())
         setDeleteEquipmentCode('');
     }
     return(
