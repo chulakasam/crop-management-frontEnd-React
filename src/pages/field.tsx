@@ -2,7 +2,7 @@ import {Link} from "react-router";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import * as React from "react";
-import {getAllField, removeField, updateField} from "../slice/FieldSlice.ts";
+import {getAllField, removeField, updateField, updatingField} from "../slice/FieldSlice.ts";
 
 import {AppDispatch} from "../store/store.ts";
 import {getAllVehicle} from "../slice/VehicleSlice.ts";
@@ -45,24 +45,35 @@ export function Field(){
     }
 
 
-    function handleUpdateField(event:React.FormEvent){
+    function handleUpdateField(event: React.FormEvent) {
         event.preventDefault();
-        if(foundField){
-            dispatch(updateField({fieldCode:foundField.fieldCode,newFieldName,newFieldLocation,newFieldSize,newFieldImage_1,newFieldImage_2}));
-            alert("field updated successfully.");
-            setNewFieldName('');
-            setNewFieldLocation('');
-            setNewFieldSize('');
-            setNewFieldImage_1('');
-            setNewFieldImage_2('');
 
 
-        }else{
-            alert("field not found.");
-            setFoundField(null);
-        }
+        const updatedField = {
+            fieldCode: searchFieldCode,
+            fieldName: newFieldName,
+            location: newFieldLocation,
+            fieldSize: newFieldSize,
+            fieldImg01: newFieldImage_1,
+            fieldImg02: newFieldImage_2,
+        };
+
+        dispatch(updatingField(updatedField));
+        dispatch(getAllField());
+
+
+        setNewFieldName('');
+        setNewFieldLocation('');
+        setNewFieldSize('');
+        setNewFieldImage_1('');
+        setNewFieldImage_2('');
+        setFoundField(null);
+
+        alert('Field updated successfully!');
+
 
     }
+
 
 
 

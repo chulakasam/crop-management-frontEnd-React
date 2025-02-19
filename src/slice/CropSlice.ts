@@ -47,7 +47,17 @@ export const getAllCrop=createAsyncThunk(
 
     }
 )
-
+export const updatingCrop = createAsyncThunk(
+    "crop/update",
+    async (crop:Crop, { rejectWithValue }) => {
+        try {
+            const response = await api.put(`/update/${crop.cropId}`, crop);
+            return response.data;
+        } catch (error: any) {
+            return rejectWithValue(error.response?.data || error.message);
+        }
+    }
+);
 
 
 
@@ -76,14 +86,14 @@ const CropSlice = createSlice({
             .addCase(getAllCrop.fulfilled, (state, action)=>{
                 return action.payload;
             })
-        // .addCase(updatingField.fulfilled, (state, action)=>{
-        //     const index = state.findIndex(
-        //         (field) => field.fieldCode === action.payload.fieldCode
-        //     );
-        //     if (index !== -1) {
-        //         state[index] = action.payload;
-        //     }
-        // })
+            .addCase(updatingCrop.fulfilled, (state, action)=>{
+                const index = state.findIndex(
+                    (crop) => crop.cropId === action.payload.cropId
+                );
+                if (index !== -1) {
+                    state[index] = action.payload;
+                }
+            })
 
     }
 })

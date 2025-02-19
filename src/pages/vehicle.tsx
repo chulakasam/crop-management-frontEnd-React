@@ -2,7 +2,7 @@ import {Link} from "react-router";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import * as React from "react";
-import {deleteVehicle, getAllVehicle, removeVehicle, updateVehicle, updatingVehicle} from "../slice/VehicleSlice.ts";
+import { getAllVehicle, removeVehicle, updatingVehicle} from "../slice/VehicleSlice.ts";
 import {AppDispatch} from "../store/store.ts";
 
 export function Vehicle() {
@@ -19,7 +19,7 @@ export function Vehicle() {
     const [newStatus, setNewStatus] = useState('');
     const [newFuelType, setNewFuelType] = useState('');
     const [newRemark, setNewRemark] = useState('');
-    const [editingId, setEditingId] = useState<string | null>(null);
+
 
     useEffect(() => {
         dispatch(getAllVehicle());
@@ -53,33 +53,34 @@ export function Vehicle() {
         }
     }
 
-    // function handleUpdateVehicle(event:React.FormEvent){
-    //     event.preventDefault();
-    //     if(foundVehicle){
-    //         dispatch(updateVehicle({licenseNo:foundVehicle.licenseNo,newVehicleCode,newCategory,newStatus,newFuelType,newRemark}));
-    //
-    //         alert("vehicle updated successfully.");
-    //         setNewVehicleCode('');
-    //         setNewCategory('');
-    //         setNewStatus('');
-    //         setNewFuelType('');
-    //         setNewRemark('');
-    //     }else{
-    //         alert("vehicle not found.");
-    //         setFoundVehicle(null);
-    //     }
-    // }
-
-    const handleUpdateVehicle = async (event: React.FormEvent) => {
+    function handleUpdateVehicle(event: React.FormEvent) {
         event.preventDefault();
 
-        if (!vehicle) {
-            console.error("Vehicle data is missing!");
+        if (!newVehicleCode || !newCategory || !newStatus || !newFuelType || !newRemark) {
+            alert("Please fill in all fields.");
             return;
         }
 
-        dispatch(updateVehicle({licenseNo:foundVehicle.licenseNo,newVehicleCode,newCategory,newStatus,newFuelType,newRemark}));
-    };
+        const updatedVehicle = {
+            LicenseNo: searchLicenseNo,
+            VehicleCode: newVehicleCode,
+            Category: newCategory,
+            Status: newStatus,
+            FuelType: newFuelType,
+            Remark: newRemark
+        };
+
+        dispatch(updatingVehicle(updatedVehicle));
+        setFoundVehicle(null);
+        setNewVehicleCode('');
+        setNewCategory('');
+        setNewStatus('');
+        setNewFuelType('');
+        setNewRemark('');
+        dispatch(getAllVehicle());
+
+        alert("Vehicle successfully updated!");
+    }
 
 
 

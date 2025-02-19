@@ -1,7 +1,6 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import Field from "../model/Field.ts";
 import axios from "axios";
-import {getAllVehicle, removeVehicle, saveVehicle, updatingVehicle} from "./VehicleSlice.ts";
 const initialState:Field[] = [];
 
 
@@ -47,6 +46,17 @@ export const getAllField=createAsyncThunk(
     }
 )
 
+export const updatingField = createAsyncThunk(
+    "field/update",
+    async (field:Field, { rejectWithValue }) => {
+        try {
+            const response = await api.put(`/update/${field.fieldCode}`, field);
+            return response.data;
+        } catch (error: any) {
+            return rejectWithValue(error.response?.data || error.message);
+        }
+    }
+);
 
 
 
@@ -84,14 +94,14 @@ const FieldSlice = createSlice({
             .addCase(getAllField.fulfilled, (state, action)=>{
                 return action.payload;
             })
-            // .addCase(updatingField.fulfilled, (state, action)=>{
-            //     const index = state.findIndex(
-            //         (field) => field.fieldCode === action.payload.fieldCode
-            //     );
-            //     if (index !== -1) {
-            //         state[index] = action.payload;
-            //     }
-            // })
+            .addCase(updatingField.fulfilled, (state, action)=>{
+                const index = state.findIndex(
+                    (field) => field.fieldCode === action.payload.fieldCode
+                );
+                if (index !== -1) {
+                    state[index] = action.payload;
+                }
+            })
 
     }
 })

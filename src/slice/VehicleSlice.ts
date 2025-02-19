@@ -59,55 +59,6 @@ export const getAllVehicle=createAsyncThunk(
     }
 )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const VehicleSlice = createSlice({
     name: 'vehicle',
     initialState: initialState,
@@ -119,16 +70,7 @@ const VehicleSlice = createSlice({
             return state.filter((vehicle) => vehicle.licenseNo !== action.payload);
         },
         updateVehicle:(state,action)=>{
-            const {licenseNo,newVehicleNo,newCategory,newStatus,newFuelType,newRemark} = action.payload;
-            const vehicle=state.find((vehicle) => vehicle.licenseNo === licenseNo);
-            if(vehicle){
-                vehicle.vehicleCode=newVehicleNo || vehicle.vehicleCode;
-                vehicle.category=newCategory || vehicle.categor;
-                vehicle.status=newStatus || vehicle.status;
-                vehicle.fuelType=newFuelType || vehicle.fuelType;
-                vehicle.remark=newRemark || vehicle.remark;
 
-            }
         }
     },
 

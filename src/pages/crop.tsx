@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import * as React from "react";
 
-import { getAllCrop, removeCrop} from "../slice/CropSlice.ts";
+import {getAllCrop, removeCrop, updatingCrop} from "../slice/CropSlice.ts";
 import {AppDispatch} from "../store/store.ts";
 
 
@@ -56,8 +56,31 @@ export function Crop(){
     }
 
 
-    function handleUpdateCrop(event:React.FormEvent) {
-    event.preventDefault();
+    function handleUpdateCrop(event: React.FormEvent) {
+        event.preventDefault();
+        if (!newCropName || !newImage || !newCategory || !newSeason || !newFieldCode) {
+            alert("Please fill in all fields to update the crop.");
+            return;
+        }
+
+        const updatedCrop = {
+            cropId: searchCropId,
+            cropName: newCropName,
+            cropImage: newImage,
+            category: newCategory,
+            season: newSeason,
+            fieldCode: newFieldCode,
+        };
+
+        dispatch(updatingCrop(updatedCrop));
+        setFoundCrop(null);
+        setNewCropName("");
+        setNewImage("");
+        setNewCategory("");
+        setNewSeason("");
+        setNewFieldCode("");
+        dispatch(getAllCrop());
+        alert("Crop updated successfully.");
     }
 
 

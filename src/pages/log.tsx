@@ -3,7 +3,7 @@ import * as React from "react";
 import {useDispatch, useSelector} from "react-redux";
 
 import {useEffect, useState} from "react";
-import {getAllLogs, removeLog} from "../slice/LogSlice.ts";
+import {getAllLogs, removeLog, updatingLog} from "../slice/LogSlice.ts";
 import {getAllVehicle} from "../slice/VehicleSlice.ts";
 import {AppDispatch} from "../store/store.ts";
 
@@ -53,6 +53,23 @@ export function Log(){
 
     function handleUpdateLog(event:React.FormEvent){
         event.preventDefault();
+        const updatedLog={
+            LogCode: searchLogCode,
+            date:newLogDate,
+            observation:newObservation,
+            LogImage:newLogImage
+        }
+        if(updatedLog){
+            dispatch(updatingLog(updatedLog));
+            setNewLogDate('');
+            setNewObservation('');
+            setNewLogImage('');
+            alert('log updated successfully.');
+        }else {
+            alert('log not updated .');
+        }
+
+
     }
 
 

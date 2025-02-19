@@ -2,7 +2,7 @@ import {Link} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
 import {ChangeEvent, useEffect, useState} from "react";
 import * as React from "react";
-import {deleteStaff, getAllStaff, removeStaff, updateStaff, updatingStaff} from "../slice/StaffSlice.ts";
+import { getAllStaff, removeStaff, updatingStaff} from "../slice/StaffSlice.ts";
 import {AppDispatch} from "../store/store.ts";
 
 
@@ -24,7 +24,9 @@ export function Staff(){
     const [newContact_no, setNewContact_no] = useState('');
     const [newEmail, setNewEmail] = useState('');
     const [newAddress, setNewAddress] = useState('');
-    const [newVehicleId, setNewVehicleId] = useState('');
+    const [newLicenseNo, setNewLicenseNo] = useState('');
+
+
     useEffect(() => {
         dispatch(getAllStaff());
     }, [dispatch]);
@@ -39,6 +41,7 @@ export function Staff(){
         setDeleteStaffId('');
     }
 
+
     function handleSearchStaff(event:React.FormEvent){
         event.preventDefault();
         const found = staff.find((s: any) => s.staffId === searchStaffId);
@@ -52,74 +55,41 @@ export function Staff(){
             setNewContact_no(found.contactNo);
             setNewEmail(found.email);
             setNewAddress(found.address);
-            setNewVehicleId(found.vehicleId);
+            setNewLicenseNo(found.licenseNo);
         } else {
             alert('staff not found.');
             setFoundStaff(null);
         }
     }
-    const handleUpdateStaff = async (event: React.FormEvent) => {
+
+    function handleUpdateStaff (event: React.FormEvent) {
         event.preventDefault();
 
-        if (foundStaff) {
-            try {
-                // Log the payload being sent to update staff
-                console.log("Updating staff with data:", {
-                    staffId: foundStaff.staffId,
-                    newStaffname,
-                    newPosition,
-                    newGender,
-                    newJoined_date,
-                    newdob,
-                    newContact_no,
-                    newEmail,
-                    newAddress,
-                    newVehicleId,
-                });
-
-                // Dispatch the update action and wait for it to complete
-                const updatedStaff = await dispatch(updatingStaff({
-                    staffId: foundStaff.staffId,
-                    newStaffname,
-                    newPosition,
-                    newGender,
-                    newJoined_date,
-                    newdob,
-                    newContact_no,
-                    newEmail,
-                    newAddress,
-                    newVehicleId
-                }));
-
-                // Log the updated staff state
-                console.log("Staff updated:", updatedStaff);
-
-                // Fetch the updated staff list after updating
-                await dispatch(getAllStaff());
-
-                // Display success message
-                alert("Staff updated successfully.");
-
-                // Reset form values and state
-                setNewStaffName('');
-                setNewPosition('');
-                setNewGender('');
-                setNewJoined_date('');
-                setNewdob('');
-                setNewContact_no('');
-                setNewEmail('');
-                setNewAddress('');
-                setNewVehicleId('');
-                setFoundStaff(null); // Reset found staff state
-
-            } catch (error) {
-                console.error("Update failed:", error);
-                alert("Failed to update staff. Please try again.");
-            }
-        } else {
-            alert("Staff not found.");
+        const updatedStaff={
+            staffId: searchStaffId,
+            name: newStaffname,
+            position: newPosition,
+            gender: newGender,
+            joinedDate: newJoined_date,
+            dob: newdob,
+            contactNo: newContact_no,
+            email: newEmail,
+            address: newAddress,
+            LicenseNo: newLicenseNo,
         }
-    };
+
+        dispatch(updatingStaff(updatedStaff));
+        setNewStaffName('');
+        setNewPosition('');
+        setNewGender('');
+        setNewJoined_date('');
+        setNewdob('');
+        setNewContact_no('');
+        setNewEmail('');
+        setNewAddress('');
+        setNewLicenseNo('');
+        alert('staff successfully updated !')
+    }
 
 
 
@@ -263,8 +233,8 @@ export function Staff(){
                                     />
                                     <input
                                         type="text"
-                                        value={newVehicleId}
-                                        onChange={(e) => setNewVehicleId(e.target.value)}
+                                        value={newLicenseNo}
+                                        onChange={(e) => setNewLicenseNo(e.target.value)}
                                         placeholder="New Vehicle ID"
                                         className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                                     />

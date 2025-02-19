@@ -2,7 +2,7 @@ import {Link} from "react-router";
 import * as React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import {deleteEquipment, getAllEquipment, removeEquipment} from "../slice/EquipmentSlice.ts";
+import {getAllEquipment, removeEquipment, updatingEquipment} from "../slice/EquipmentSlice.ts";
 import {AppDispatch} from "../store/store.ts";
 
 
@@ -68,8 +68,31 @@ export function Equipment(){
 
     function handleUpdateEquipment(event:React.FormEvent){
         event.preventDefault();
-    }
+        if (!newEquipmentName || !newEquipmentType || !newEquipmentStatus || !newStaffId || !newFieldCode) {
+            alert("Please fill in all fields.");
+            return;
+        }
 
+        const updatedEquipment = {
+            equipmentId: searchEquipmentId,
+            equipmentName: newEquipmentName,
+            equipmentType: newEquipmentType,
+            equipmentStatus: newEquipmentStatus,
+            staffId: newStaffId,
+            fieldCode: newFieldCode
+        };
+
+        dispatch(updatingEquipment(updatedEquipment));
+        setFoundEquipment(null);
+        setNewEquipmentName('');
+        setNewEquipmentType('');
+        setNewEquipmentStatus('');
+        setNewStaffId('');
+        setNewFieldCode('');
+        dispatch(getAllEquipment());
+
+        alert("Equipment Successfully updated!");
+    }
     return(
         <>
 
