@@ -17,6 +17,9 @@ import {AddVehicle} from "./pages/addVehicle.tsx";
 import {AddField} from "./pages/addField.tsx";
 import {AddLog} from "./pages/addLog.tsx";
 import {AddCrop} from "./pages/addCrop.tsx";
+import AuthLayout from "./components/AuthLayOut.tsx";
+import SignIn from "./pages/SignIn.tsx";
+import {Signup} from "./pages/SignUp.tsx";
 
 //import {UpdateStaff} from "./pages/updateStaff.tsx";
 //import {DeleteStaff} from "./pages/deleteStaff.tsx";
@@ -24,11 +27,20 @@ import {AddCrop} from "./pages/addCrop.tsx";
 
 function App() {
   const routes=createBrowserRouter([
+
+      {
+          path: "",
+          element: <AuthLayout />,
+          children: [
+              { path: "/SignIn", element: <SignIn /> },
+              { path: "", element: <Signup /> },
+          ],
+      },
     {
       path:'',
       element:<RootLayout/>,
       children:[
-        {path :'',element :<Dashboard/>},
+        {path :'/dashboard',element :<Dashboard/>},
         {path :'/staff',element :<Staff/>},
             { path: "/staff/addStaff", element: <AddStaff/> },
             //{ path: "/staff/updateStaff", element: <UpdateStaff/> },

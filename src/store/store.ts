@@ -5,6 +5,8 @@ import CropSlice from "../slice/CropSlice.ts";
 import VehicleSlice from "../slice/VehicleSlice.ts";
 import FieldSlice from "../slice/FieldSlice.ts";
 import LogSlice from "../slice/LogSlice.ts";
+import UserSlice from "../slice/UserSlice.ts";
+import SignUpSlice from "../slice/SignUpSlice.ts";
 
 export const store = configureStore({
     reducer: {
@@ -14,6 +16,8 @@ export const store = configureStore({
         vehicle:VehicleSlice,
         field:FieldSlice,
         log:LogSlice,
+        users : UserSlice,
+        signUp:SignUpSlice
     },
 });
 export type AppDispatch = typeof store.dispatch;
